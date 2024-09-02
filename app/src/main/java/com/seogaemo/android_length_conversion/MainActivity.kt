@@ -49,5 +49,15 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putBoolean("cmToM", cmToM)
+        super.onSaveInstanceState(outState)
+    }
 
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        cmToM = savedInstanceState.getBoolean("cmToM")
+        binding.inputUnitTextView.text = if(cmToM) "cm" else "m"
+        binding.outputUnitTextView.text = if(cmToM) "m" else "cm"
+        super.onRestoreInstanceState(savedInstanceState)
+    }
 }
